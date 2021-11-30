@@ -1,9 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 import socket
-import binascii
 import json
-import time
 
+import director_config
 import db
 
 
@@ -29,7 +28,7 @@ def main():
             msg = json.loads(data.decode())
             if msg['type'] == 'heartbeat':
                 print('Heartbeet -', msg['hostname'])
-                db.add_heartbeat(msg)
+                db.add_heartbeat(director_config, msg)
         except socket.error as e:
             print(e)
 

@@ -1,14 +1,6 @@
 import mysql.connector as mysql
-import config
-import os
-import time
-from datetime import datetime
 
-#os.environ['TZ'] = 'Australia/Sydney'
-#time.tzset()
-
-
-def install_db(db, cursor):
+def install_db(db, cursor, config):
     cursor.execute('SHOW DATABASES like "%s"' % config.database)
     databases = cursor.fetchall()
     if len(databases) < 1:
@@ -26,7 +18,7 @@ def install_db(db, cursor):
     """)
 
 
-def open_db(use=True):
+def open_db(config, use=True):
     db = mysql.connect(
         host=config.host,
         user=config.user,
@@ -38,8 +30,8 @@ def open_db(use=True):
     return db, cursor
 
 
-def add_heartbeat(heartbeat):
-    dbCon, dbCur = open_db()
+def add_heartbeat(config, heartbeat):
+    dbCon, dbCur = open_db(config)
     query = "INSERT INTO heartbeat (hostname,utcdt) VALUES (%s, %s)"
     values = (heartbeat['hostname'], heartbeat['utcdt'])
     dbCur.execute(query, values)
