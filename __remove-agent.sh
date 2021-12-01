@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 set -e
 supervisorctl stop symmetrical-meme-agent
 rm /etc/supervisor/conf.d/symmetrical-meme-agent.conf

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 supervisorctl stop symmetrical-meme-director
 rm /etc/supervisor/conf.d/symmetrical-meme-director.conf

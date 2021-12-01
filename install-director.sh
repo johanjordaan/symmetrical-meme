@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 set -e
 
 mkdir -p /usr/local/sbin/symmetrical-meme-director
