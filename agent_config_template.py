@@ -4,5 +4,5 @@ gap = 10
 
 # Master url
 #
-master_url =
-master_port =
+#master_url = "example.com"
+#master_port = 5000
