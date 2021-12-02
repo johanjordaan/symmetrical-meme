@@ -1,0 +1,38 @@
+#!/bin/bash
+
+APP=symmetrical-meme-agent
+DEST_PATH=/usr/local/sbin/$APP
+
+# Add user
+#
+useradd $APP -N
+
+# Install dependencies
+#
+/usr/bin/pip3 install requests --target $DEST_PATH --upgrade
+
+# Edit config file
+#
+if [ -f "$DEST_PATH/agent_config.py.backup" ]
+then
+    echo "Previous config file exists. [$DEST_PATH/agent_config.py.backup]"
+    read -p "Replace with new clean config ? [Y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      echo "Replacing config with clean config."
+      cp $DEST_PATH/agent_config_template.py $DEST_PATH/agent_config.py
+    else
+      mv $DEST_PATH/agent_config.py.backup $DEST_PATH/agent_config.py
+    fi
+else
+  cp $DEST_PATH/agent_config_template.py $DEST_PATH/agent_config.py
+fi
+
+nano $DEST_PATH/agent_config.py
+chown -R $APP $DEST_PATH/
+
+systemctl daemon-reload
+systemctl start $APP.service
+
+echo "Done installing $APP."

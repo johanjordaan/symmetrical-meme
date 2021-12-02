@@ -4,6 +4,10 @@ import time
 from datetime import datetime
 import json
 import agent_config
+import requests
+import logging
+
+logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',level=logging.INFO)
 
 try:
     while True:
@@ -12,14 +16,20 @@ try:
         heartbeat = {
             'type': 'heartbeat',
             'hostname': socket.gethostname(),
-            'utcdt': formatted_date
+            'gap': agent_config.gap,
+            'utcdt': formatted_date,
+            'value': 1,
         }
         msg = json.dumps(heartbeat)
 
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
-        sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, 32)
-        sock.sendto(msg.encode(), (agent_config.mcast_grp, agent_config.mcast_port))
-        time.sleep(agent_config.interval)
+        try:
+            res = requests.post(f"http://{agent_config.master_url}:{agent_config.master_port}/heartbeat", json=msg)
+            if not res.ok:
+                logging.error(res.json())
+        except Exception as e:
+            logging.error(e)
+
+        time.sleep(agent_config.gap)
 
 except KeyboardInterrupt:
     pass

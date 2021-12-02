@@ -1,7 +1,7 @@
 #!/bin/bash
-
-supervisorctl stop symmetrical-meme-director
-rm /etc/supervisor/conf.d/symmetrical-meme-director.conf
+systemctl stop symmetrical-meme-director
+rm /etc/systemd/system/symmetrical-meme-director.service
+systemctl daemon-reload
 deluser symmetrical-meme-director
 rm -Rf /usr/local/sbin/symmetrical-meme-director
-supervisorctl reload
+systemctl daemon-reload

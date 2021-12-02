@@ -1,0 +1,15 @@
+[Unit]
+Description=symmetrical-meme-director
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=symmetrical-meme-director
+WorkingDirectory=/usr/local/sbin/symmetrical-meme-director
+ExecStart=/usr/bin/python3 director.py
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=symmetrical-meme-director

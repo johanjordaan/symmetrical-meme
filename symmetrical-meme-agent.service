@@ -1,0 +1,15 @@
+[Unit]
+Description=symmetrical-meme-agent
+After=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=symmetrical-meme-agent
+WorkingDirectory=/usr/local/sbin/symmetrical-meme-agent
+ExecStart=/usr/bin/python3 agent.py
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=symmetrical-meme-agent

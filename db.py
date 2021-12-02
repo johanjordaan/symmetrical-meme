@@ -10,13 +10,15 @@ def install_db(db, cursor, config):
         print('Database [%s] already exists' % config.database)
     cursor.execute("USE %s" % config.database)
     cursor.execute("""
-        create table if not exists heartbeat 
+        create table if not exists events 
         (
-            hostname varchar(150) not null,
-            utcdt    datetime     not null
+            type     varchar(50)   not null,
+            hostname varchar(150)  not null,
+            gap      int           not null,  
+            utcdt    datetime      not null,
+            value    double        not null
         );
     """)
-
 
 def open_db(config, use=True):
     db = mysql.connect(
@@ -30,10 +32,10 @@ def open_db(config, use=True):
     return db, cursor
 
 
-def add_heartbeat(config, heartbeat):
+def add_event(config, event):
     dbCon, dbCur = open_db(config)
-    query = "INSERT INTO heartbeat (hostname,utcdt) VALUES (%s, %s)"
-    values = (heartbeat['hostname'], heartbeat['utcdt'])
+    query = "INSERT INTO events (type,hostname,gap,utcdt,value) VALUES (%s, %s, %s, %s, %s)"
+    values = (event['type'], event['hostname'], event['gap'], event['utcdt'], event['value'])
     dbCur.execute(query, values)
     close_db(dbCon)
 
