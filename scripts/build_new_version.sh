@@ -1,4 +1,4 @@
-VERSION=v0.1
+VERSION=0.1
 # Don't run t his if the rep[os is dirty
 #
 
