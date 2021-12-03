@@ -1,4 +1,4 @@
-VERSION=0.3
+VERSION=0.4
 AGENT_URL="http://path.to/my$VERSION.deb'
 TEMP_DEB="$(mktemp)" &&
 wget -O "$TEMP_DEB" $AGENT_URL &&
