@@ -4,6 +4,11 @@ A super light weight distributed event producer and logger framework.
 
 Running on debian platform with python3 installed.
 
+# Install dependencies
+```
+sudo apt install python3 python3-pip -y
+```
+
 # Install agent
 ```
 wget https://github.com/johanjordaan/symmetrical-meme/raw/0.7/scripts/install_agent.sh
