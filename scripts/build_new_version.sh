@@ -1,4 +1,4 @@
-VERSION=0.1
+VERSION=0.2
 # Don't run t his if the rep[os is dirty
 #
 
@@ -19,7 +19,7 @@ source ./deb/director/build.sh
 
 # Tag git and push
 #
-#git add -u
-#git commit -m "Version update [$VERSION]"
-#git tag $VERSION
-#git pusg --tags
+git add -u
+git commit -m "Version update [$VERSION]"
+git tag $VERSION
+git pusg --tags
