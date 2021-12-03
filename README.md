@@ -11,12 +11,12 @@ sudo apt install python3 python3-pip -y
 
 # Install agent
 ```
-wget https://github.com/johanjordaan/symmetrical-meme/raw/0.7/scripts/install_agent.sh
+wget https://github.com/johanjordaan/symmetrical-meme/raw/0.8/scripts/install_agent.sh
 chmod +x install_agent.sh && sudo ./install_agent.sh
 ```
 
 # Install director
 ```
-wget https://github.com/johanjordaan/symmetrical-meme/raw/0.7/scripts/install_director.sh
+wget https://github.com/johanjordaan/symmetrical-meme/raw/0.8/scripts/install_director.sh
 chmod +x install_director.sh && sudo ./install_director.sh
 ```
