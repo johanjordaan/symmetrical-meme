@@ -1,4 +1,5 @@
-VERSION=0.8
+VERSION=0.9
+
 # Don't run this if the repos is dirty
 #
 

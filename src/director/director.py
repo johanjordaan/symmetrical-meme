@@ -9,6 +9,15 @@ from gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 
+# This needs to be deprecated soon. Here for backward compatibility
+#
+@app.route('/heartbeat', methods=['POST'])
+def heartbeat():
+    content = request.json
+    event = json.loads(content)
+    db.add_event(director_config, event)
+    return jsonify({"status": "ok"})
+
 
 @app.route('/events', methods=['POST'])
 def heartbeat():
