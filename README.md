@@ -6,7 +6,7 @@ Running on debian platform with python3 installed.
 
 # Install agent
 ```
-wget -O https://github.com/johanjordaan/symmetrical-meme/raw/0.7/scripts/install_agent.sh
+wget https://github.com/johanjordaan/symmetrical-meme/raw/0.7/scripts/install_agent.sh
 chmod +x install_agent.sh && sudo ./install_agent.sh
 ```
 
