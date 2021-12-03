@@ -1,8 +1,9 @@
 #!/bin/bash
 
+VERSION=v0.1
 SRC_DIR=./src/agent
 DEB_DIR=./deb/agent
-BUILD_DIR=./build/symmetrical-meme-agent
+BUILD_DIR=./build/symmetrical-meme-agent.$VERSION
 
 rm -Rf $BUILD_DIR
 mkdir -p $BUILD_DIR

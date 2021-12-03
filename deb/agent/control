@@ -1,6 +1,6 @@
 Package: symmetrical-meme-agent
-Version: 1.0
+Version: v0.1
 Architecture: all
-Maintainer: johan <johan@1337coders.com>
+Maintainer: johan jordaan <johan@1337coders.com>
 Description: symmetrical-meme-agent
- This is the agent.
+ This is the agent that generates events that is delivered to the director for processing.

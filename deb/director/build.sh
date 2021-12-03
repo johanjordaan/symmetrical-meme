@@ -1,5 +1,6 @@
 #!/bin/bash
 
+VERSION=v0.1
 SRC_DIR=./src/director
 DEB_DIR=./deb/director
 BUILD_DIR=./build/symmetrical-meme-director
