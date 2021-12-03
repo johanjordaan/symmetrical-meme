@@ -1,4 +1,4 @@
-VERSION=0.5
+VERSION=0.6
 # Don't run this if the repos is dirty
 #
 
@@ -28,8 +28,8 @@ source ./deb/director/build.sh
 
 # Tag git and push
 #
-#git add -u
-#git commit -m "Version update [$VERSION]"
-#git tag $VERSION
-#git push
-#git push --tags
+git add -u
+git commit -m "Version update [$VERSION]"
+git tag $VERSION
+git push
+git push --tags

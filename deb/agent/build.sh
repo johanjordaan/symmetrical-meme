@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=0.5
+VERSION=0.6
 SRC_DIR=./src/agent
 DEB_DIR=./deb/agent
 BUILD_DIR=./build/symmetrical-meme-agent.$VERSION
