@@ -1,4 +1,4 @@
-VERSION=v0.1
+VERSION=0.1
 AGENT_URL=http://path.to/my$VERSION.deb
 echo $AGENT_URL
 #TEMP_DEB="$(mktemp)" &&
