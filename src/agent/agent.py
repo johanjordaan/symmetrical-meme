@@ -7,29 +7,33 @@ import agent_config
 import requests
 import logging
 
-logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s',level=logging.INFO)
+import skills.heartbeat as heartbeat
+import skills.cpu as cpu
+
+
+logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.INFO)
+
 
 try:
     while True:
-        now = datetime.utcnow()
-        formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
-        heartbeat = {
-            'type': 'heartbeat',
-            'hostname': socket.gethostname(),
-            'gap': agent_config.gap,
-            'utcdt': formatted_date,
-            'value': 1,
-        }
-        msg = json.dumps(heartbeat)
+        hostname = socket.gethostname()
+        formatted_date = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+        gap = agent_config.gap
+
+        events = []
+        events += heartbeat.run(hostname, formatted_date, gap)
+        events += cpu.run(hostname, formatted_date, gap)
+
+        msg = json.dumps(events)
 
         try:
-            res = requests.post(f"http://{agent_config.master_url}:{agent_config.master_port}/heartbeat", json=msg)
+            res = requests.post(f"http://{agent_config.master_url}:{agent_config.master_port}/events", json=msg)
             if not res.ok:
                 logging.error(res.json())
         except Exception as e:
             logging.error(e)
 
-        time.sleep(agent_config.gap)
+        time.sleep(gap)
 
 except KeyboardInterrupt:
     pass

@@ -10,6 +10,7 @@ useradd $APP -N
 # Install dependencies
 #
 /usr/bin/pip3 install requests --target $DEST_PATH --upgrade
+/usr/bin/pip3 install psutil --target $DEST_PATH --upgrade
 
 # Edit config file
 #
