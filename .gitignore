@@ -133,9 +133,9 @@ build/
 
 # Creds
 .mysql-creds
-director_config.py
-agent_config.py
-director_config.py
+src/director/director_config.py
+src/agent/agent_config.py
+src/director/director_config.py
 .Rproj.user
 nohup.out
 config.yml
