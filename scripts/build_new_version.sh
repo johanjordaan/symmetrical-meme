@@ -22,4 +22,4 @@ source ./deb/director/build.sh
 git add -u
 git commit -m "Version update [$VERSION]"
 git tag $VERSION
-git pusg --tags
+git push --tags
