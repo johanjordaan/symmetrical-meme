@@ -20,7 +20,7 @@ def heartbeat():
 
 
 @app.route('/events', methods=['POST'])
-def heartbeat():
+def events():
     content = request.json
     events = json.loads(content)
     for event in events:
