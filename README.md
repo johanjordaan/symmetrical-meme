@@ -1,32 +1,17 @@
-## symmetrical-mem
+## symmetrical-meme
 
-# Download and extract 
-```
-wget https://github.com/johanjordaan/symmetrical-meme/archive/refs/heads/master.zip && unzip master.zip && cd symmetrical-meme-master
-```
+A super light weight distributed event producer and logger framework. 
+
+Running on debian platform with python3 installed.
 
 # Install agent
 ```
-nano agent_config.py
-```
-
-```
-sudo ./install-agent.sh
-```
-
-```
-sudo supervisorctl status
+wget https://github.com/johanjordaan/symmetrical-meme/blob/0.5/scripts/install_agent.sh
+sudo ./install_agent.sh
 ```
 
 # Install director
 ```
-nano  director_config.py
-```
-
-```
-sudo ./install-director.sh
-```
-
-```
-sudo supervisorctl status
+wget https://github.com/johanjordaan/symmetrical-meme/blob/0.5/scripts/install_director.sh
+sudo ./install_director.sh
 ```

@@ -1,6 +1,6 @@
-VERSION=0.4
-AGENT_URL="http://path.to/my$VERSION.deb'
+DIRECTOR_URL=https://github.com/johanjordaan/symmetrical-meme/releases/download/0.5/symmetrical-meme-director.0.5.deb
+echo $DIRECTOR_URL
 TEMP_DEB="$(mktemp)" &&
-wget -O "$TEMP_DEB" $AGENT_URL &&
-#dpkg -i "$TEMP_DEB"
-#rm -f "$TEMP_DEB"
+wget -O "$TEMP_DEB" $DIRECTOR_URL &&
+dpkg -i "$TEMP_DEB"
+rm -f "$TEMP_DEB"
