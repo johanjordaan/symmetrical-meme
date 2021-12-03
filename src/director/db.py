@@ -38,7 +38,7 @@ def add_event(config, event):
     dbCon, dbCur = open_db(config)
     query = "INSERT INTO events (type,hostname,gap,utcdt,value) VALUES (%s, %s, %s, %s, %s)"
     values = (event['type'], event['hostname'], event['gap'], event['utcdt'], event['value'])
-    dbCur.execute(query, values)
+    #dbCur.execute(query, values)
     close_db(dbCon)
 
 
