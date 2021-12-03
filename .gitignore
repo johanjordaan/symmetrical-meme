@@ -133,7 +133,7 @@ build/
 
 # Creds
 .mysql-creds
-config.py
+director_config.py
 agent_config.py
 director_config.py
 .Rproj.user

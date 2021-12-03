@@ -1,0 +1,40 @@
+#!/bin/bash
+
+APP=symmetrical-meme-director
+DEST_PATH=/usr/local/sbin/$APP
+
+# Add user
+#
+useradd $APP -N
+
+# Install dependencies
+#
+/usr/bin/pip3 install mysql-connector-python --target $DEST_PATH --upgrade
+/usr/bin/pip3 install flask --target $DEST_PATH --upgrade
+/usr/bin/pip3 install gevent --target $DEST_PATH --upgrade
+
+# Edit config file
+#
+if [ -f "$DEST_PATH/director_config.py.backup" ]
+then
+    echo "Previous config file exists. [$DEST_PATH/director_config.py.backup]"
+    read -p "Replace with new clean config ? [Y/N] " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]
+    then
+      echo "Replacing config with clean config."
+      cp $DEST_PATH/director_config_template.py $DEST_PATH/director_config.py
+    else
+      mv $DEST_PATH/director_config.py.backup $DEST_PATH/director_config.py
+    fi
+else
+  cp $DEST_PATH/director_config_template.py $DEST_PATH/director_config.py
+fi
+
+nano $DEST_PATH/director_config.py
+chown -R $APP $DEST_PATH/
+
+systemctl daemon-reload
+systemctl start $APP.service
+
+echo "Done installing $APP."

@@ -1,0 +1,6 @@
+Package: symmetrical-meme-director
+Version: 1.0
+Architecture: all
+Maintainer: johan <johan@1337coders.com>
+Description: symmetrical-meme-director
+ This is the director that listens for events from the agents and writes it to the configured db.

@@ -1,0 +1,11 @@
+#!/bin/bash
+APP=symmetrical-meme-director
+DEST_PATH=/usr/local/sbin/$APP
+
+# Allow user to edit config file plus keep old one
+#
+if [ -f "$DEST_PATH/director_config.py" ]
+then
+    echo "$DEST_PATH/director_config.py already exists. Creating backup."
+    cp $DEST_PATH/director_config.py $DEST_PATH/director_config.py.backup
+fi

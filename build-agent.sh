@@ -1,23 +1,24 @@
 #!/bin/bash
 
-rm -Rf ./build/agent
-mkdir -p ./build/agent
+BUILD_DIR=./build/symmetrical-meme-agent
 
-mkdir -p ./build/agent/DEBIAN
-cp control-agent ./build/agent/DEBIAN/control
-cp preinst-agent ./build/agent/DEBIAN/preinst
-cp postinst-agent ./build/agent/DEBIAN/postinst
+rm -Rf $BUILD_DIR
+mkdir -p $BUILD_DIR
 
-
-mkdir -p ./build/agent/usr/local/sbin/symmetrical-meme-agent
-cp agent.py ./build/agent/usr/local/sbin/symmetrical-meme-agent
-cp __remove-agent.sh ./build/agent/usr/local/sbin/symmetrical-meme-agent
-cp agent_config_template.py ./build/agent/usr/local/sbin/symmetrical-meme-agent/agent_config_template.py
+mkdir -p $BUILD_DIR/DEBIAN
+cp control-agent $BUILD_DIR/DEBIAN/control
+cp preinst-agent $BUILD_DIR/DEBIAN/preinst
+cp postinst-agent $BUILD_DIR/DEBIAN/postinst
+cp postrm-agent $BUILD_DIR/DEBIAN/postrm
 
 
+mkdir -p $BUILD_DIR/usr/local/sbin/symmetrical-meme-agent
+cp agent.py $BUILD_DIR/usr/local/sbin/symmetrical-meme-agent
+cp agent_config_template.py $BUILD_DIR/usr/local/sbin/symmetrical-meme-agent/agent_config_template.py
 
-mkdir -p ./build/agent/etc/systemd/system
-cp symmetrical-meme-agent.service ./build/agent/etc/systemd/system
 
-dpkg-deb --build --root-owner-group ./build/agent
+mkdir -p $BUILD_DIR/etc/systemd/system
+cp symmetrical-meme-agent.service $BUILD_DIR/etc/systemd/system
+
+dpkg-deb --build --root-owner-group $BUILD_DIR
 

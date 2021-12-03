@@ -2,7 +2,7 @@
 import socket
 import json
 
-import director_config_template
+import director_config
 import db
 
 from flask import Flask, request, jsonify
