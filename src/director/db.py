@@ -1,5 +1,6 @@
 import mysql.connector as mysql
 
+
 def install_db(db, cursor, config):
     cursor.execute('SHOW DATABASES like "%s"' % config.database)
     databases = cursor.fetchall()
@@ -19,6 +20,7 @@ def install_db(db, cursor, config):
             value    double        not null
         );
     """)
+
 
 def open_db(config, use=True):
     db = mysql.connect(

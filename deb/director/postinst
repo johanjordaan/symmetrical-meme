@@ -34,6 +34,8 @@ fi
 nano $DEST_PATH/director_config.py
 chown -R $APP $DEST_PATH/
 
+/usr/bin/python3 $DEST_PATH/create_db.py
+
 systemctl daemon-reload
 systemctl start $APP.service
 
