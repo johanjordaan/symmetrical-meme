@@ -3,7 +3,7 @@
 VERSION=0.1
 SRC_DIR=./src/director
 DEB_DIR=./deb/director
-BUILD_DIR=./build/symmetrical-meme-director
+BUILD_DIR=./build/symmetrical-meme-director.$VERSION
 
 rm -Rf $BUILD_DIR
 mkdir -p $BUILD_DIR
