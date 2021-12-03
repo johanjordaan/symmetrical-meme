@@ -15,6 +15,12 @@ wget -O install_agent.sh https://github.com/johanjordaan/symmetrical-meme/raw/0.
 chmod +x install_agent.sh && sudo ./install_agent.sh
 ```
 
+# Update agent config
+```
+sudo nano /usr/local/sbin/symmetrical-meme-agent/agent_config.py
+sudo systemctl restart symmetrical-meme-agent.service
+```
+
 # Install director
 ```
 wget -O install_director.sh https://github.com/johanjordaan/symmetrical-meme/raw/0.11/scripts/install_director.sh
