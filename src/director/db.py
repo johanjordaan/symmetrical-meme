@@ -34,11 +34,14 @@ def open_db(config, use=True):
     return db, cursor
 
 
-def add_event(config, event):
+def add_event(config, events):
     dbCon, dbCur = open_db(config)
     query = "INSERT INTO events (type,hostname,gap,utcdt,value) VALUES (%s, %s, %s, %s, %s)"
-    values = (event['type'], event['hostname'], event['gap'], event['utcdt'], event['value'])
-    #dbCur.execute(query, values)
+
+    for event in events:
+        values = (event['type'], event['hostname'], event['gap'], event['utcdt'], event['value'])
+        dbCur.execute(query, values)
+
     close_db(dbCon)
 
 

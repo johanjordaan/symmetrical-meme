@@ -37,6 +37,6 @@ chown -R $APP $DEST_PATH/
 /usr/bin/python3 $DEST_PATH/create_db.py
 
 systemctl daemon-reload
-systemctl start $APP.service
+systemctl restart $APP.service
 
 echo "Done installing $APP."

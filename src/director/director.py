@@ -15,7 +15,7 @@ app = Flask(__name__)
 def heartbeat():
     content = request.json
     event = json.loads(content)
-    db.add_event(director_config, event)
+    db.add_event(director_config, [event])
     return jsonify({"status": "ok"})
 
 
@@ -23,8 +23,7 @@ def heartbeat():
 def events():
     content = request.json
     events = json.loads(content)
-    for event in events:
-        db.add_event(director_config, event)
+    db.add_event(director_config, events)
     return jsonify({"status": "ok"})
 
 

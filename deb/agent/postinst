@@ -34,6 +34,6 @@ nano $DEST_PATH/agent_config.py
 chown -R $APP $DEST_PATH/
 
 systemctl daemon-reload
-systemctl start $APP.service
+systemctl restart $APP.service
 
 echo "Done installing $APP."

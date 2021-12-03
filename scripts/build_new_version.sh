@@ -1,4 +1,4 @@
-VERSION=0.10
+VERSION=0.11
 
 # Don't run this if the repos is dirty
 #
