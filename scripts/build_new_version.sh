@@ -1,5 +1,5 @@
-VERSION=0.2
-# Don't run t his if the rep[os is dirty
+VERSION=0.3
+# Don't run this if the repos is dirty
 #
 
 # Update all the relevant versions
