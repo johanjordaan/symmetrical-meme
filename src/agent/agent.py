@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import socket
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
 import agent_config
 import requests
@@ -13,27 +13,33 @@ import skills.cpu as cpu
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.INFO)
 
+gap = agent_config.gap
 
+lastnow = datetime.utcnow()-timedelta(seconds=gap)
 try:
     while True:
-        hostname = socket.gethostname()
-        formatted_date = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-        gap = agent_config.gap
+        now = datetime.utcnow()
+        delta = (now - lastnow).seconds
+        if delta >= gap:
+            lastnow = now
 
-        events = []
-        events += heartbeat.run(hostname, formatted_date, gap)
-        events += cpu.run(hostname, formatted_date, gap)
+            hostname = socket.gethostname()
+            formatted_date = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-        msg = json.dumps(events)
+            events = []
+            events += heartbeat.run(hostname, formatted_date, gap)
+            events += cpu.run(hostname, formatted_date, gap)
 
-        try:
-            res = requests.post(f"http://{agent_config.master_url}:{agent_config.master_port}/events", json=msg)
-            if not res.ok:
-                logging.error(res.json())
-        except Exception as e:
-            logging.error(e)
+            msg = json.dumps(events)
 
-        time.sleep(gap)
+            try:
+                res = requests.post(f"http://{agent_config.master_url}:{agent_config.master_port}/events", json=msg)
+                if not res.ok:
+                    logging.error(res.json())
+            except Exception as e:
+                logging.error(e)
+        else:
+            time.sleep(0.1)
 
 except KeyboardInterrupt:
     pass
